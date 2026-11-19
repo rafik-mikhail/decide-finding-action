@@ -1,6 +1,6 @@
 # Decide finding action — evaluation guide
 
-Version under test: `1.0.0`. Use fixture dispositions with pre-registered expected actions, approval states, and fix keys. Include groups where several members must receive the same key.
+Version under test: `1.1.0`. Use fixture dispositions with pre-registered expected actions, approval states, and fix keys. Include groups where several members must receive the same key.
 
 | Fixture | Expected behavior |
 |---|---|
@@ -16,6 +16,10 @@ Version under test: `1.0.0`. Use fixture dispositions with pre-registered expect
 | Six group members through one shared helper | Same `code:` key for all six. |
 | Secret `confirmed` | `secret:` rotate-and-remove key; removal alone not treated as complete. |
 | Request to dismiss the alert directly | No dismissal; tool state listed for a human. |
+| `fix-first` item, no disposition | `fix`, disposition `not-validated`, reason `fix cheaper than review`. |
+| `not-validated` finding where someone proposes `accept-risk` | Rejected; only `fix` is allowed. |
+| Rule sample: 3 of 5 refuted for one unmodeled sanitizer | Three `false-positive` decisions plus one rule decision `model-sanitizer`; the other 25 findings stay open. |
+| Two validated SAST findings in one helper | Same `code:` fix key on both. |
 
 ## Scoring and release checks
 

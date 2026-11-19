@@ -7,6 +7,8 @@
 - **Mitigations decay.** SSVC notes a firewall or IDS rule is valid only until someone changes it. Every `mitigate` needs a review date.
 - **Dismissal reasons affect future scans.** GitHub says the chosen dismissal reason can affect whether a query keeps running in future analyses, and a dismissed alert stays dismissed on all branches. That is why a human applies it.
 - **Remediation is not a final state.** Rollbacks and redeployments can reintroduce a fixed vulnerability; reopen triggers cover the decision side, and the later monitoring step covers the code side.
+- **Rule decisions are separate from finding decisions.** A noisy rule is fixed in scanner configuration by its owner. Semgrep lets a rule run in Monitor mode while its true-positive rate is measured, before it comments or blocks; CodeQL's `security-extended` suite trades precision for coverage compared with the default suite.
+- **Shared code causes are grouped here.** Grouping SAST findings before validation guesses at a cause. After validation, the same `code:` or `control:` fix key on several findings is the group.
 
 ## Areas for improvement
 
@@ -23,3 +25,5 @@
 - [GitHub: Resolving code scanning alerts](https://docs.github.com/en/code-security/how-tos/manage-security-alerts/manage-code-scanning-alerts/resolve-alerts): dismissal effects.
 - [CISA: Minimum requirements for VEX](https://www.cisa.gov/sites/default/files/2023-04/minimum-requirements-for-vex-508c.pdf): VEX statuses.
 - [Renovate: vulnerabilityAlerts](https://docs.renovatebot.com/configuration-options/#vulnerabilityalerts): lowest fixing version as the default strategy.
+- [Semgrep policies](https://docs.semgrep.dev/semgrep-code/policies): Monitor, Comment, and Block modes; finding-count filter for noisy rules.
+- [GitHub: CodeQL query suites](https://docs.github.com/en/code-security/concepts/code-scanning/codeql/codeql-query-suites): default versus `security-extended` precision.
